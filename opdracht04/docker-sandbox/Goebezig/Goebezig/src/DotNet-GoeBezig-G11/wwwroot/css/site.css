@@ -1,0 +1,242 @@
+﻿body {
+    padding-top: 50px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+
+.kiesOrganisatie {
+    color: black;
+}
+
+    .kiesOrganisatie:hover {
+        text-decoration: none;
+        color: #77C5D5;
+    }
+
+.navbarCss {
+    background-color: rgb(99, 177, 188);
+}
+
+.navbar-brand-title {
+    font-size: 1.8em;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.row .no-float {
+    display: table-cell;
+    float: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: black;
+        background-color: white;
+    }
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* buttons and links extension to use brackets: [ click me ] */
+.btn-bracketed::before {
+    display: inline-block;
+    content: "[";
+    padding-right: 0.5em;
+}
+
+.btn-bracketed::after {
+    display: inline-block;
+    content: "]";
+    padding-left: 0.5em;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+.inputText {
+    height: 500px;
+}
+
+.panel {
+    border: 0;
+}
+
+.row {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border: 1px groove #d4e3f3;
+    border: 1px groove rgba(212,227,243,.9);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 1px 3px 1px rgba(0,0,0,.2);
+    background: none repeat scroll 0 0 #77c5d5;
+    z-index: 10;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #e24146;
+    border-color: #e24146;
+}
+/*.btn, .skill {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+}*/
+
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 2px;
+    text-indent: 0;
+    cursor: pointer;
+    border: 1px solid #000000;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.carousel-indicators .active {
+    width: 6px;
+    height: 6px;
+    margin: 2px;
+    background-color: #000;
+}
+
+#cover {
+  /*background-image: url("..//images//cover.jpg");
+    -ms-background-size: cover;
+    background-size: cover;
+    -ms-background-position: center;
+    background-position: bottom;
+    height: 300px;*/
+}
+
+.glyphicon.glyphicon-chevron-right, .glyphicon.glyphicon-chevron-left {
+    color: #000;
+}
+
+.footer {
+    padding: 15px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #fff;
+    background-color: #77c5d5;
+    position: absolute;
+}
+
+.dd-wrapper {
+    position: relative;
+    width: 240px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background: #fff;
+    border: none;
+    box-shadow: 0 1px 1px rgba(50,50,50,.1);
+    cursor: pointer;
+    color: #373a3c;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+html > body .row:last-of-type {
+    margin: 0;
+    margin-top: 15px;
+}
+
+a > img {
+    width: 1.5em;
+}
+
+nav > a {
+    height: 100%;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #77c5d5;
+}
+
+.panel-primary {
+    border: #77c5d5 1px solid;
+}
+
+.textGiveADay {
+    color: #81C9D8;
+}
+
+.center-form {
+    display: inline-block;
+    text-align: center;
+}
+
+.element.style {
+    height: auto;
+}
+
+#tabActie {
+    background-color: #e0e0e0;
+}
+.onzeBody {
+    min-height: 100vh;
+}
+
+   
+
+#tabEvenement {
+    background-color: #e0e0e0;
+}
+
+   
+/*.panel-heading > a {
+    text-decoration: none;
+}*/
+
+
+
+
+
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

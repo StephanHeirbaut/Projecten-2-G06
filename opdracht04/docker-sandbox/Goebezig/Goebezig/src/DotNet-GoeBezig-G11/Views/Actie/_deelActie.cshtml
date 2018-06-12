@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using DotNet_GoeBezig_G11.Models.Domein
+@model DotNet_GoeBezig_G11.Models.ActieViewModels.DeelActieViewModel
+@{
+    
+}
+<form asp-controller="Actie" asp-action="MaakBericht">
+    <input type="hidden" asp-for="Id"/>
+    <div class="form-group">
+        <label asp-for="Aankodiging" class="control-label"></label>
+
+        <textarea asp-for="Aankodiging"class="form-control"></textarea>
+        <span asp-validation-for="Aankodiging" class="text-danger"></span>
+
+    </div>
+
+
+    <input type="submit" class="btn btn-success" value="Opslaan" />
+
+
+
+</form>

@@ -1,0 +1,83 @@
+﻿@using System.Threading.Tasks
+@using DotNet_GoeBezig_G11.Models.Domein
+@using DotNet_GoeBezig_G11.Models.DraaiboekViewModels
+@{
+    Cursist cursist = ViewData["Cursist"] as Cursist;
+    ViewData["Title"] = "ToonTaken";
+}
+    <div class="col-md-12">
+        <h3 style="color: black;">Voeg taken toe aan goedgekeurde acties. </h3>
+        <hr/>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <tr>
+                    <th>Wie</th>
+                    <th>Wat</th>
+                    <th>Actie</th>
+                    <th>Van - Tot</th>
+                    <th>Niveau van realisatie</th>
+                    <th>Datum Creatie</th>
+                    <th>Datum Wijziging</th>
+                    <th></th>
+                </tr>
+                @foreach (var actie in Model)
+                {
+                foreach (var taak in actie.Taken)
+                {
+                        <tr>
+                            <td>@taak.Wie</td>
+                            <td>@taak.Wat</td>
+                            <td>@taak.Actie.ToString()</td>
+                            <td>@taak.Van?.ToString("d") - @taak.Tot?.ToString("d")</td>
+                            <td>@taak.NiveauVanRealisatie</td>
+                            <td>@taak.DatumCreatie.ToString("d")</td>
+                            <td>@taak.DatumWijziging?.ToString("d")</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#myModal3">Bewerken</a> |
+                                <a data-toggle="modal" data-target="#myModal2">Verwijderen</a>
+                                <div id="myModal2" class="modal fadeIn" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                @{ Html.RenderPartial("Delete", new DeleteViewModel()
+                                                    {
+                                                        TaakId = taak.TaakId,
+                                                        Wat = taak.Wat
+                                                    });}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="myModal3" class="modal fadeIn" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                @{ Html.RenderPartial("Edit", new EditViewModel(cursist, taak));}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+             }
+            </table>
+            <p>
+                <a class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px" data-toggle="modal" data-target="#myModal">Maak Een Taak</a>
+            </p>
+            <div id="myModal" class="modal " role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            @{ Html.RenderPartial("Edit", new EditViewModel(cursist));}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

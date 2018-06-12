@@ -1,0 +1,55 @@
+﻿@using System.Threading.Tasks
+@model DotNet_GoeBezig_G11.Models.DraaiboekViewModels.EditViewModel
+
+@{
+    Layout = "";
+    ViewData["Title"] = Model.TaakId == 0 ? "Maak Taak" : "Bewerk Taak";
+    var action = Model.TaakId == 0 ? "Create" : "Edit";
+}
+<form asp-action="@action" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text"><h2>@ViewData["Title"]</h2></div>
+            <input asp-for="TaakId" />
+            <div class="form-group form-group-lg">
+                <label asp-for="Wie"></label>
+                <select asp-for="ToegevoegdeCursisten" asp-items="@Model.Wie" class="form-control"></select>
+                <span asp-validation-for="ToegevoegdeCursisten" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-lg">
+                <label asp-for="Actie"></label>
+                <select asp-for="Actie" asp-items="@(ViewData["Acties"] as SelectList)" class="form-control">
+                    <option value="">-- select location --</option>
+                </select>
+                <span asp-validation-for="Actie" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-lg">
+                <label asp-for="Wat"></label>
+                <input asp-for="Wat" class="form-control" />
+                <span asp-validation-for="Wat" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-lg">
+                <label asp-for="Opmerking"></label>
+                <textarea asp-for="Opmerking" class="form-control"></textarea>
+                <span asp-validation-for="Opmerking" class="text-danger"></span>
+            </div>
+            <div class="form-group form-group-lg">
+                <label asp-for="Van"></label>
+                <div class='input-group date'>
+                    <input type="datetime" asp-for="Van" id="datetimepicker1" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <label asp-for="Tot"></label>
+                <div class="input-group date">
+                    <input type="datetime" asp-for="Tot" id="datetimepicker2" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <button class="btn btn-success" type="submit">Save</button>
+                <a asp-action="Index" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form> 

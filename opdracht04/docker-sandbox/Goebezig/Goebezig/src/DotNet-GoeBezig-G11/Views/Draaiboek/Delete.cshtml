@@ -1,0 +1,21 @@
+@model DotNet_GoeBezig_G11.Models.DraaiboekViewModels.DeleteViewModel
+
+@{
+    Layout = "";
+    ViewData["Title"] = "Delete";
+}
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    
+    <h2>Verwijderen</h2>
+
+    <h3>@Model.Wat verwijderen?</h3>
+    <form method="post" asp-action="Delete" asp-controller="Draaiboek">
+        <div>
+            <input asp-for="TaakId" type="hidden"/>
+            <input asp-for="Wat" type="hidden"/>
+            <input type="submit" value="Delete" class="btn btn-danger"> |
+            <a asp-action="Index">Terug naar overzicht</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,229 @@
+﻿@using DotNet_GoeBezig_G11.Models.ActieViewModels
+@using DotNet_GoeBezig_G11.Models.Domein
+@using Microsoft.VisualStudio.Web.CodeGeneration
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DotNet_GoeBezig_G11.Models.ActieViewModels.VerwijderActieModel
+@{
+    List<Actie> acties = ViewBag.Acties;
+    List<Actie> evenementen = ViewBag.Evenementen;
+    int nummerEvenement = 1;
+    int nummerActie = 1;
+
+}
+@*<div class="col-md-12" id="cover">
+    <h2 class="text-center" style="color: #ffffff; padding-top: 60px;">
+        Voeg hier nieuwe acties toe, indien nodig kan je deze nog steeds verwijderen of wijzigen
+    </h2>
+   
+</div>*@
+
+<div class="col-md-12 container">
+<h1>Voeg hier acties en evenementen toe</h1>
+<ul class="nav nav-tabs nav-justified">
+    <li class="active" id="tabActie"><a href="#ActiesTab" data-toggle="tab">Acties</a></li>
+    <li id="tabEvenement"><a href="#EvenementenTab" data-toggle="tab">Evenementen</a></li>
+</ul>
+<div class="col-md-12 tab-content">
+    <div class="tab-pane" id="EvenementenTab">
+
+        <table class="table table-striped table-hover">
+            <h3>Evenementen</h3>
+            <thead><tr><th class="col-md-3">Titel</th><th class="col-md-5">Omschrijving</th><th class="col-md-1">Datum</th><th></th></tr></thead>
+            @foreach (Actie evenement in evenementen)
+            {
+
+                string klasse = $"#updateEvenement{nummerEvenement++}";
+                //string succes = string.Format("{0}", evenement.Goedgekeurd ? "succes" : "danger");
+                <tr>
+                    <td>@evenement.Titel</td>
+                    <td>@evenement.Omschrijving</td>
+                    <td>@evenement.Datum.Value.Day/@evenement.Datum.Value.Month/@evenement.Datum.Value.Year</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <a href=@klasse class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <form asp-controller="Actie" asp-action="VerWijderActie" class="col-md-6">
+                                <input type="hidden" asp-for="actieId" Value=@evenement.ActieId/>
+                                <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @{
+            nummerEvenement = 1;
+        }
+
+
+
+
+        @foreach (Actie evenement in evenementen)
+        {
+
+            string id = $"updateEvenement{nummerEvenement++}";
+            string delete = $"#{id}";
+
+            ViewBag.Evenement = evenement;
+            var model = new EvenementViewModel()
+            {
+                Datum = (DateTime) evenement.Datum,
+                Id = evenement.ActieId,
+                Titel = evenement.Titel,
+                Omschrijving = evenement.Omschrijving
+
+            };
+
+            <div id="@id" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Wijzig hier uw evenement</h4>
+                        </div>
+                        <div class="modal-body">
+                            @{
+                                Html.RenderPartial("_updateEvenement", model);
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <div class="text-center">
+            <a href="#voegEvenement" data-toggle="modal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nieuw evenement</a>
+        </div>
+        <div id="voegEvenement" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Voeg hier een nieuw evenment toe</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            Html.RenderPartial("_voegEvenementToe", new EvenementViewModel());
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tab-pane active" id="ActiesTab">
+        <table class="table table-striped table-hover">
+            <h3>Acties</h3>
+            <thead><tr><th class="col-md-3">Titel</th><th class="col-md-6">Omschrijving</th><th></th></tr></thead>
+            @foreach (Actie actie in acties)
+            {
+                string klasse = $"#updateActie{nummerActie++}";
+                //string succes = string.Format("{0}", actie.Goedgekeurd ? "succes" : "danger");
+
+                <tr>
+                    <td>@actie.Titel</td>
+                    <td>@actie.Omschrijving</td>
+                    <td>
+                        <div class="btn-group pull-left">
+                            <a class="btn btn-success btn-sm" data-toggle="modal" href=@klasse><span class="glyphicon glyphicon-pencil"></span></a>
+                            <form asp-controller="Actie" asp-action="VerWijderActie" class="col-md-6">
+                                <input type="hidden" asp-for="actieId" Value=@actie.ActieId/>
+                                <button type="submit" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove"></span></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+        @{
+            nummerActie = 1;
+        }
+
+
+
+
+
+        @foreach (Actie actie in acties)
+        {
+
+            string id = $"updateActie{nummerActie++}";
+
+            var model = new ActieViewModel()
+            {
+                Id = actie.ActieId,
+                Omschrijving = actie.Omschrijving,
+                Titel = actie.Titel
+
+            };
+
+            <div id="@id" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Wijzig hier uw actie</h4>
+                        </div>
+                        <div class="modal-body">
+                            @{
+                                Html.RenderPartial("_updateActie", model);
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        }
+
+        <div class="text-center">
+            <a href="#voegActies" data-toggle="modal" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span> Nieuwe actie
+            </a>
+        </div>
+        <div id="voegActies" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Voeg hier een nieuwe actie toe</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            Html.RenderPartial("_voegActieToe", new ActieViewModel());
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<form asp-controller="Actie" asp-action="DienActiesIn" class="divider pull-right">
+    <button type="submit" class="btn btn-secondary"><span class="glyphicon glyphicon-envelope"></span>  Indienen</button>
+</form>
+
+
+
+
+
+</div>

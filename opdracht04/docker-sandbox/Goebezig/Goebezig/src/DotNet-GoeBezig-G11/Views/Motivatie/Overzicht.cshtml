@@ -1,0 +1,64 @@
+﻿@using System.Runtime.InteropServices.ComTypes
+@using System.Threading.Tasks
+@using DotNet_GoeBezig_G11.Models.Domein
+@model DotNet_GoeBezig_G11.Models.MotivatieViewModels.MotivatieViewModel
+@{
+    ViewData["Title"] = "Motivatie";
+}
+<div class="container" style="margin-top: 30px; margin-bottom: 50px">
+    <h1 class="row text-center" style="margin-bottom: 30px;color: #81C9D8">Vooruitgang</h1>
+    <div class="wizard-steps">
+        <ul class="wizard-steps">
+            <li class="wizard-steps-item">
+                <a asp-action="KiesOrganisatie" asp-controller="Motivatie" class="wizard-steps-link previous">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item">
+                <a asp-action="MaakMotivatie" asp-controller="Motivatie" class="wizard-steps-link previous">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item ">
+                <a asp-action="KiesContactpersonen" asp-controller="Motivatie" class="wizard-steps-link previous">
+                    <span>3</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item">
+                <a class="wizard-steps-link previous disabled">
+                    <span>4</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div style="width: 100%; background-color: #F4F4F4;">
+    <div class="container">
+        <form asp-action="MotivatieBevestigen" asp-controller="Motivatie">
+            <div class="col-md-12">
+                <h1 style="color: #508590">Gekozen organisatie</h1>
+                <p>@ViewBag.Motivatie.Organisatie.Naam</p>
+                <h1 style="color: #81C9D8">Motivatie</h1>
+                <p>@ViewBag.Motivatie.Inhoud</p>
+                <h1 style="color: #508590">Gekozen contactpersonen</h1>
+                <div class="list-group">
+
+                    @{
+                        foreach (Contactpersoon item in ViewBag.Motivatie.Contactpersonen)
+                        {
+                            <p class="list-group-item"> @item.AanspreekTitel @item.Naam - @item.Email</p>
+                        }
+
+                    }
+
+                </div>
+                <div class="row pull-right">
+                    <a asp-controller="Motivatie" asp-action="KiesContactpersonen" class="btn btn-default" style="background-color: #D02025; color: white;">Ga terug</a>
+                    <input type="submit" value="Dien motivatie in" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

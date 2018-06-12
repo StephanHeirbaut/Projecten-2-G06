@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using DotNet_GoeBezig_G11.Models.Domein
+@model DotNet_GoeBezig_G11.Models.ActieViewModels.EvenementViewModel
+@{
+    Actie evenement = ViewBag.Evenement;
+}
+
+<form asp-controller="Actie" asp-action="UpdateEvenment">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Titel" class="control-label"></label>
+
+        <input type="text" asp-for="Titel" class="form-control" />
+        <span asp-validation-for="Titel" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Omschrijving" class="control-label"></label>
+
+        <textarea asp-for="Omschrijving" class="form-control"></textarea>
+        <span asp-validation-for="Omschrijving" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Datum" class="control-label"></label>
+
+        
+            <input asp-for="Datum" type="text" placeholder="dd/mm/yyyy" class="form-control"/>
+       
+
+    </div>
+
+
+    <input type="submit" class="btn btn-success" value="Wijzig" />
+
+
+
+</form>
+

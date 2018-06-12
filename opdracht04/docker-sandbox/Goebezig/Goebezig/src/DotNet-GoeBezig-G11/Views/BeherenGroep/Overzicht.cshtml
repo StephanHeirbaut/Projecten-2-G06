@@ -1,0 +1,105 @@
+﻿@using DotNet_GoeBezig_G11.Models.Domein
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Groep groep = ViewBag.Groep;
+    ViewData["Title"] = "Overzicht";
+    List<Cursist> leden = ViewBag.Leden;
+    Organisatie gekozenOrganisatie = groep.GeefLaatstIngediendeMotivatie()?.Organisatie;
+}
+<div class="col-md-12" id="cover">
+    <h2 class="text-center" style="padding-top: 60px;">Overzicht van groep: @groep.Naam</h2>
+    <p>
+
+    </p>
+</div>
+<div class="text-center">
+    <div class="col-md-12"><h1></h1></div>
+
+    <div class="col-md-12">
+        <hr />
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Leden van @groep.Naam</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @foreach (var lid in leden)
+
+                        {
+                            <li class="list-group-item">
+                                @lid.Naam @lid.Voornaam
+
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        @*<div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Vooruitgang</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            Status: <br />
+                            @groep.CurrentState.ToString()
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>*@
+        @if (gekozenOrganisatie != null)
+            {
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Gekozen organisatie</div>
+                    <div class="panel-body">
+
+                        <ul class="list-group">
+
+                            <li class="list-group-item">
+                                Naam: @gekozenOrganisatie.Naam
+                            </li>
+                            <li class="list-group-item">
+                                Email: @gekozenOrganisatie.Email
+                            </li>
+                            <li class="list-group-item">
+                                Soort organisatie: @gekozenOrganisatie.Type
+                            </li>
+                            <li class="list-group-item">
+                                @{
+                                    Locatie locatie = gekozenOrganisatie.Locatie;
+                                }
+                                Adres: <br />
+                                @locatie?.Land
+                                <br />
+                                @locatie?.Postcode
+                                <br />
+                                @locatie?.Stad
+                                <br />
+                                @locatie?.Straat? @locatie?.Nummer
+
+
+
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+                                    }
+    </div>
+</div>

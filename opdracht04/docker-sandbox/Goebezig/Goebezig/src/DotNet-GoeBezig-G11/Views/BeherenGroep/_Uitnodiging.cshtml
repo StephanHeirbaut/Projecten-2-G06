@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using System.Threading.Tasks
+@using DotNet_GoeBezig_G11.Models.Domein
+@using Microsoft.ApplicationInsights.AspNetCore
+@using Microsoft.ApplicationInsights.AspNetCore
+@model DotNet_GoeBezig_G11.Models.BeheerGroepViewModels.AccepteerGroepViewModel
+@{
+    Groep HuidigeGroep = ViewBag.HuidigeGroep;
+}
+<div class="form-horizontal col-md-12">
+    <form asp-controller="BeherenGroep" asp-action="AccepteerGroep" class="col-md-offset-0 pull-left">
+        <input type="hidden" asp-for="GroepNaam" Value="@HuidigeGroep.Naam" />
+        <button type="submit" name="action" class="btn btn-success">Bevestig</button>
+    </form>
+    <form asp-controller="BeherenGroep" asp-action="WeigerGroep" class="col-md-2">
+        <input type="hidden" asp-for="GroepNaam" Value="@HuidigeGroep.Naam" />
+        <button type="submit" name="action" class="btn btn-danger">Weiger</button>
+    </form>
+</div>
+
+

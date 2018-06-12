@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8EC719D5-40EB-4C26-81C7-7EC70217E4F9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DotNet-GoeBezig-G11", "src\DotNet-GoeBezig-G11\DotNet-GoeBezig-G11.xproj", "{867EC1B8-4A31-4147-B683-F8E314FFF9BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AC920BA5-C72A-437B-B2B9-CCEB1FA03E7F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "test", "test\test.xproj", "{DFA77370-44A3-4CFC-91B4-130CB394E5F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{867EC1B8-4A31-4147-B683-F8E314FFF9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867EC1B8-4A31-4147-B683-F8E314FFF9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867EC1B8-4A31-4147-B683-F8E314FFF9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867EC1B8-4A31-4147-B683-F8E314FFF9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA77370-44A3-4CFC-91B4-130CB394E5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA77370-44A3-4CFC-91B4-130CB394E5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA77370-44A3-4CFC-91B4-130CB394E5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA77370-44A3-4CFC-91B4-130CB394E5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{867EC1B8-4A31-4147-B683-F8E314FFF9BE} = {8EC719D5-40EB-4C26-81C7-7EC70217E4F9}
+		{DFA77370-44A3-4CFC-91B4-130CB394E5F0} = {AC920BA5-C72A-437B-B2B9-CCEB1FA03E7F}
+	EndGlobalSection
+EndGlobal

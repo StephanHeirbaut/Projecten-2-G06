@@ -1,0 +1,44 @@
+Van tot de eerste bank = 2m
+Van het begin van de ene bank tot het begin van de volgende bank = 2m
+Tafel lengte = 1.5m
+Breedte lokaal (van raam naar deur) = 10.5m
+Van bord tot scheidingswand = 10m
+Hoogte lokaal = 3m
+
+lokaal B4.038:
+3m naar boven (*20) 60m
+2m naar noord (*20) 40m
+10,5m naar west (*20) 210m
+3m naar beneden (*20) 60m
+2;4;6;8m naar zuid (*5) (2*5;4*5;...) 10m + 20m + 30m + 40m = 100m
+0.75;2.25;3.75;5.25;6.75m naar oost (*5) 3.75m + 11.25m + 18.75m + 26.25m + 33.75m = 93.75m
+-------------------------------------------------------------------------------------------
+alles samen = 563.75m
+
+lokaal B4.037
+zelfde als b4.038
+-----------------
+563.75m
+
+-------------------------------------------------------------------------------------------
+alles sames = 1127.5m kabel voor de labo opstelling
+
+
+-------------------------------------------------------------------------------------------
++ kabels naar de access points
+2m naar boven (*2)
+5m naar zuid
+5m naar oost (*2)
+15m naar zuid
+
+-------------------------------------------------------------------------------------------
+access points = 34m
+
+-------------------------------------------------------------------------------------------
+kabels in patchpaneel
+24poorten in patchpaneel *1.2m hoog = 28.8m
+(niet alle switchen staan op 1.2 meter hoogte, dus dan hebben we nog kabel ter vervanging
+
+-------------------------------------------------------------------------------------------
+
+labo opstelling + access points + kabels in patchpaneel ~1200m kabel(1190.3m) 

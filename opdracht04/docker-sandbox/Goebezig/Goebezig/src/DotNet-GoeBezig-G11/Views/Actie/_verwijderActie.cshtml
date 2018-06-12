@@ -1,0 +1,10 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DotNet_GoeBezig_G11.Models.ActieViewModels.VerwijderActieModel
+@{
+}
+<form asp-controller="Actie" asp-action="VerWijderActie" class="col-md-6">
+    <input type="hidden" asp-for="actieId" />
+    <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+</form>

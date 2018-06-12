@@ -1,0 +1,53 @@
+﻿@using System.Data.SqlClient
+@using System.Threading.Tasks
+@model Sakura.AspNetCore.IPagedList<Organisatie>
+@using Sakura.AspNetCore
+@using DotNet_GoeBezig_G11.Models.Domein
+@{
+    
+}
+<div class="row">
+    <div class="col-md-8">
+        <h3>Je bent nog niet geregistreerd bij een organisatie, verifeer eerst bij welke organisatie je hoort</h3>
+        @using (Html.BeginForm("ToonOrganisaties", "BeherenGroep", FormMethod.Get))
+        {
+            <p>
+                Zoeken: @Html.TextBox("SearchString", ViewBag.CurrentFiler as string)
+                <input type="submit" value="Search" class="btn btn-success" />
+            </p>
+        }
+        <table class="table table-hover">
+            <thead>
+            <tr class="panel-primary">
+                <th>
+                    @Html.ActionLink("Naam", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFiler })
+                </th>
+                <th>
+                    @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.CurrentFiler })
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                   @foreach (var org in Model)
+                   {
+                    <tr>
+                        <td>@org.Naam</td>
+                        <td>@org.Email</td>
+                        @{
+                            string naam = @org.Naam.Replace(" ", "_");
+                        }
+                        <td><a asp-action="InschrijvenOrganisatie" asp-controller="BeherenGroep" asp-route-naam="@naam" class="btn btn-default">Ik behoor tot deze organisatie!</a></td>
+                    </tr>
+                   }
+            
+            </tbody>
+        </table>
+        <br/>
+        @*Page @(organisaties?.TotalPage < organisaties?.PageIndex ? 1 : organisaties?.PageIndex) of @organisaties?.TotalPage*@
+        <pager />
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>

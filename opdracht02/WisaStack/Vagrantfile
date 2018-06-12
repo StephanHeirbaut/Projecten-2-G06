@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+
+# vi: set ft=ruby :
+
+
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  
+config.vm.box = "kensykora/windows_2012_r2_standard_core"
+
+config.vm.network "private_network", ip: "192.168.50.4"
+  
+#config.vm.network :forwarded_port, guest: 3389, host: 3389
+
+ 
+  
+
+config.vm.provision :shell, path: "scripts/IISChoco.ps1"
+  
+config.vm.provision :shell, path: "scripts/MySQLAsp.ps1"
+  
+ 
+
+
+
+
+end

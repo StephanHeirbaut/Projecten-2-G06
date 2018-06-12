@@ -1,0 +1,77 @@
+﻿@using System.Data.SqlClient
+@using System.Threading.Tasks
+@using DotNet_GoeBezig_G11.Models.Domein
+@model Sakura.AspNetCore.IPagedList<DotNet_GoeBezig_G11.Models.Domein.Organisatie>
+@using Sakura.AspNetCore
+
+@{
+    ViewData["Title"] = "Motivatie";
+    Groep groep = ViewBag.Groep;
+}
+<div class="container" style="margin-top: 30px; margin-bottom: 50px">
+    <h1 class="row text-center" style="margin-bottom: 30px;color: #81C9D8">Vooruitgang</h1>
+    <div class="wizard-steps">
+        <ul class="wizard-steps">
+            <li class="wizard-steps-item">
+                <a class="wizard-steps-link previous disabled">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item">
+                <a class="wizard-steps-link active">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item">
+                <a class="wizard-steps-link">
+                    <span>3</span>
+                </a>
+            </li>
+            <li class="wizard-steps-item">
+                <a class="wizard-steps-link">
+                    <span>4</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div style="width: 100%; background-color: #F4F4F4;">
+    <div class="container">
+        <div class="col-md-12">
+            <h2 class="text-center"style="color: #508590">Klik op de organisatie aan wie je het goedbezig label wilt toekennen</h2>
+            @using (Html.BeginForm("KiesOrganisatie", "Motivatie", FormMethod.Get))
+            {
+                <div class="text-center">
+                    <p>
+                        Zoeken : @Html.TextBox("SearchString", ViewBag.CurrentFiler as string)
+                        <input type="submit" value="Search" class="btn btn-success" />
+                    </p>
+                </div>
+            }
+            <div class="row">
+                @foreach (var org in Model)
+                {
+                    <a asp-action="VoegOrganisatieToe" asp-controller="Motivatie" asp-route-naam="@org.Naam" class="kiesOrganisatie col-md-3" style="height: 200px;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="background-color: #F7F7F9">@org.Naam</li>
+                            <li class="list-group-item">Type: @org.Type</li>
+                            <li class="list-group-item">Email: @org.Email</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+            <div class="text-center">
+                <pager />
+            </div>
+        </div>
+        <div class="row pull-right">
+            <a asp-controller="Motivatie" asp-action="Index" class="btn btn-default" style="background-color: #D02025; color: white;">Ga terug naar overzicht</a>
+            @if ((groep.GeefStatus() >= 1) && (groep.GeefLaatstIngediendeMotivatie().Feedback.Equals("")))
+            {
+                <a asp-controller="Motivatie" asp-action="MaakMotivatie" class="btn btn-success" >Ga verder</a>
+            }
+        </div>
+    </div>
+
+</div>

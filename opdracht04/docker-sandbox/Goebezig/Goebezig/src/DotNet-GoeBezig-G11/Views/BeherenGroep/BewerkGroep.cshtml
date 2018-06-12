@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Cursist cursist = ViewBag.Cursist;
+    ViewData["Title"] = "Groep";
+}
+@using DotNet_GoeBezig_G11.Models.Domein
+@model DotNet_GoeBezig_G11.Models.BeheerGroepViewModels.BewerkViewModel
+@{
+    List<Cursist> leden = ViewBag.Leden;
+    IEnumerable<Cursist> uitgenodigd = ViewBag.Uitgenodigd;
+
+}
+<div class="col-md-12" id="cover">
+    <h2 class="text-center" style=" padding-top: 40px;">Nodig cursisten uit voor je groep!</h2>
+
+
+    
+        <form asp-controller="BeherenGroep" asp-action="BewerkGroep">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group text-center">
+
+                <div class="input-group">
+                    <div class="input-group-addon">E-mail</div>
+                    <input asp-for="EmailCursist" class="form-control" />
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-envelope"></span></button>
+                    </div>
+                </div>
+                <span asp-validation-for="EmailCursist" class="text-danger"></span>
+
+            </div>
+        </form>
+   
+
+    </div>
+<div class="row text-center">
+    
+
+    <div class="col-md-12">
+        <hr/>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Leden</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+
+                        @foreach (var lid in leden)
+
+                        {
+                            <li class="list-group-item">
+                                @lid.Naam @lid.Voornaam
+
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Uitgenodigden</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+
+                        @foreach (var lid in uitgenodigd)
+
+                        {
+                            <li class="list-group-item">
+                                @lid.Email
+
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+<div class="row">
+
+</div>
+@section scripts {
+    <script asp-src-include="lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

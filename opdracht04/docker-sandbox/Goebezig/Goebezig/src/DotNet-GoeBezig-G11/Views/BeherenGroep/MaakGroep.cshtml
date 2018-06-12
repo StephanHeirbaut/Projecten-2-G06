@@ -1,0 +1,86 @@
+﻿@using System.Threading.Tasks
+@using DotNet_GoeBezig_G11.Models.Domein
+@using Microsoft.ApplicationInsights.AspNetCore
+@using Microsoft.ApplicationInsights.AspNetCore
+@model DotNet_GoeBezig_G11.Models.BeheerGroepViewModels.BewerkGroepViewModel
+
+
+@{
+    List<Groep> groepen = ViewBag.groep;
+    ViewData["Title"] = "Groep";
+}
+
+<div class="container form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col-md-12">
+        <form method="post" class="col-md-6" asp-controller="BeherenGroep" asp-action="MaakGroep">
+            <h3>Groep maken.</h3>
+
+            <hr />
+
+            @*<div class="form-group">
+                    <label asp-for="Open" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.Open, true) Open <br />
+                        @Html.RadioButtonFor(model => model.Open, false) Gesloten
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="Naam" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Naam" class="form-control" />
+                    <span asp-validation-for="Naam" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-default">Maak Groep</button>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="col-md-6">
+            <h3>Uitnodingen.</h3>
+            <hr />
+            @if (groepen != null)
+            {
+                foreach (Groep item in groepen)
+                {
+                    ViewBag.HuidigeGroep = item;
+                    <p>Wilt u zich inschrijven in de groep @item.Naam?</p>
+
+                    <div class="form-group">
+
+                        @{
+                            await Html.RenderPartialAsync("_Uitnodiging");
+                        }
+
+                    </div>
+
+
+                                }
+                            }
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</div>
+
+@section scripts {
+    <script asp-src-include="lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+
+
+
